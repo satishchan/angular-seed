@@ -1,11 +1,12 @@
-'use strict';
+angular.module('F1FeederApp.controllers', []).
+  controller('driversController', function($scope, ergastAPIservice) {
+    $scope.nameFilter = null;
+    $scope.driversList = [];
+    $scope.seasonYear = null;
 
-/* Controllers */
-
-angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', ['$scope', function($scope) {
-
-  }])
-  .controller('MyCtrl2', ['$scope', function($scope) {
-
-  }]);
+    ergastAPIservice.getDrivers().success(function (response) {
+        //Dig into the responde to get the relevant data
+        $scope.seasonYear = response.MRData.StandingsTable.StandingsLists[0].season;
+        $scope.driversList = response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+    });
+  });
