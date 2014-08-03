@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>F-1 Feeder</title>
+</head>
+
+<body ng-app="F1FeederApp" ng-controller="driversController">
+  <input type="text" ng-model="nameFilter" placeholder="Search..."/>
+  <table>
+    <thead>
+      <tr><th colspan="5">{{seasonYear}} Forumla 1 Drivers Championship Standings</th></tr>
+      <td> Position </td>
+      <td> Name </td>
+      <td> Nationality </td>
+      <td> Team </td>
+      <td> Points</td>
+      <td> Wiki</td>
+    </thead>
+    <tbody>
+      <tr ng-repeat="driver in driversList | filter: nameFilter">
+        <td>{{$index + 1}}</td>
+        <td>
+          {{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}
+        </td>
+        <td>{{driver.Constructors[0].nationality}}</td>
+        <td>{{driver.Constructors[0].name}}</td>
+        <td>{{driver.points}}</td>
+        <td>{{driver.Constructors[0].url}}></td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+</body>
+</html>
