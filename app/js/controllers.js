@@ -14,6 +14,8 @@ angular.module('F1FeederApp.controllers', []).
         $scope.seasonYear = response.MRData.StandingsTable.StandingsLists[0].season;
         $scope.driversList = response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
     });
+}).
+
     /* Driver controller */
   controller('driverController', function($scope, $routeParams, ergastAPIservice) {
     $scope.id = $routeParams.id;
